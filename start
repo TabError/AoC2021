@@ -1,0 +1,34 @@
+#!/bin/bash
+
+
+if [[ $1 -eq "" ]]
+then
+  day=`date +%d`
+else
+  day=$1
+fi
+printf -v padDay "%02d" $day    # pad day and save to padDay
+
+
+if [[ $2 -eq "" ]]
+then
+  year=`date +%Y`
+else
+  year=$2
+fi
+
+
+# ===== hey =====
+echo We have year $year, day $day
+
+puzzle=`aocd $day $year`
+
+if [[ $puzzle =~ ^usage.* ]]
+then
+  echo fetching failed
+else
+  filename="data_"$padDay".in"
+  printf "${puzzle}\n" > $filename
+  cat $filename
+  cp "solution_00.py" "solution_"$padDay".py"
+fi

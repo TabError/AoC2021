@@ -1,0 +1,18 @@
+#!/bin/bash
+
+day=$1
+if [[ $1 -eq "" ]]
+then
+  day=`date +%d`
+else
+  day=$1
+fi
+printf -v padDay "%02d" $day    # pad day and save to padDay
+
+
+if [ $day -lt 1 ] || [ $day -gt 24 ]
+then
+  echo $padDay is an invalid day!
+else
+  python3 "solution_"$padDay".py" $2
+fi

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [[ $1 -eq "" ]]
+then
+  echo "Provide a solution!"
+  exit $1
+else
+  solution=$1
+fi
+
+
+if [[ $2 -eq "" ]]
+then
+  day=`date +%d`
+else
+  day=$2
+fi
+printf -v padDay "%02d" $day    # pad day and save to padDay
+
+
+if [[ $3 -eq "" ]]
+then
+  year=`date +%Y`
+else
+  year=$3
+fi
+
+
+# ===== hey =====
+
+python3 -c "import aocd; aocd.submit(${solution}, day=${day}, year=${year})"
+
+# python3 "print('hello')"
+
+# python3 - <<'END_SCRIPT'
+# print("TESTPRINT")
+# END_SCRIPT
