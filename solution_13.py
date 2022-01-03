@@ -33,28 +33,28 @@ for i in inst.splitlines():
 # print(folds)
 
 # =============== part 1 ===============
-ndots = set(data)
+dots = set(data)
 
 for i, f in enumerate(folds):
-    dots = ndots
     ffunc = lambda x : x[0 if f[0] == 'x' else 1] < f[1]
     ndots = set(filter(ffunc, dots))
     dots -= ndots
     mfunc = lambda x: (2*f[1] - x[0], x[1]) if f[0] == 'x' else (x[0], 2*f[1] - x[1])
     ndots |= set(map(mfunc, dots))
+    dots = ndots
     if i == 0:
-        print(len(ndots))
+        print(len(dots))
 
 
 # =============== part 2 ===============
 
-# print(ndots)
+# print(dots)
 
-xhi = max([x for x,y in ndots])
-yhi = max([y for x,y in ndots])
+xhi = max([x for x,y in dots])
+yhi = max([y for x,y in dots])
 
 for j in range(yhi + 1):
     r = ""
     for i in range(xhi + 1):
-        r += '#' if (i,j) in ndots else ' '
+        r += '#' if (i,j) in dots else ' '
     print(r)
