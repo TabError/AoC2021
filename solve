@@ -10,7 +10,7 @@ fi
 printf -v padDay "%02d" $day    # pad day and save to padDay
 
 
-if [ $day -lt 1 ] || [ $day -gt 24 ]
+if [ $day -lt 1 ] || [ $day -gt 25 ]
 then
   echo $padDay is an invalid day!
 else

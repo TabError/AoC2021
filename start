@@ -28,7 +28,14 @@ then
   echo fetching failed
 else
   filename="data_"$padDay".in"
-  printf "${puzzle}\n" > $filename
+  printf -- "${puzzle}\n" > $filename
   cat $filename
-  cp "solution_00.py" "solution_"$padDay".py"
+  if [[ ! -f "solution_"$padDay".py" ]]
+  then
+      cp "solution_00.py" "solution_"$padDay".py"
+  else
+      echo " "
+      echo " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+      echo " solution_"$padDay".py already exists "
+  fi
 fi
